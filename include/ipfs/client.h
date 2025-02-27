@@ -722,6 +722,35 @@ class Client {
   /** Get IPFS bandwidth (bw) information.
    *
    * Implements
+   * https://docs.ipfs.tech/reference/kubo/rpc/#api-v0-dag-stat
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagStat
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagStat(
+      /** [in] Id of the root DAG node */
+      const std::string& root_id,
+      /** [out]
+       * {
+            "DagStats": [
+                {
+                  "Cid": "QmabZ1pL9npKXJg8JGdMwQMJo2NCVy9yDVYjhiHK4LTJQH",
+                  "NumBlocks": 1,
+                  "Size": 13
+                }
+            ],
+            "Ratio": 1,
+            "TotalSize": 13,
+            "UniqueBlocks": 1
+       * } */
+      Json* json);
+
+  /** Get IPFS bandwidth (bw) information.
+   *
+   * Implements
    * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/STATS.md#ipfsstatsbwoptions.
    *
    * An example usage:

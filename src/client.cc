@@ -322,6 +322,10 @@ void Client::NameResolve(const std::string& name_id, std::string* path_string) {
   GetProperty(response, "Path", 0, path_string);
 }
 
+void Client::DagStat(const std::string& root_id, Json* json) {
+  FetchAndParseJson(MakeUrl("dag/stat", {{"arg", root_id}, {"progress", "false"}}), json);
+}
+
 void Client::ObjectNew(std::string* object_id) {
   Json response;
 
