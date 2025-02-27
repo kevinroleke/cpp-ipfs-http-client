@@ -132,7 +132,7 @@ void Client::ConfigReplace(const Json& config) {
 void Client::DhtFindPeer(const std::string& peer_id, Json* addresses) {
   std::stringstream body;
 
-  http_->Fetch(MakeUrl("dht/findpeer", {{"arg", peer_id}}), {}, &body);
+  http_->Fetch(MakeUrl("routing/findpeer", {{"arg", peer_id}}), {}, &body);
 
   /* Find the addresses of the requested peer in the response. It consists
   of many lines like this:
@@ -163,7 +163,7 @@ void Client::DhtFindPeer(const std::string& peer_id, Json* addresses) {
 void Client::DhtFindProvs(const std::string& hash, Json* providers) {
   std::stringstream body;
 
-  http_->Fetch(MakeUrl("dht/findprovs", {{"arg", hash}}), {}, &body);
+  http_->Fetch(MakeUrl("routing/findprovs", {{"arg", hash}}), {}, &body);
 
   /* The reply consists of multiple lines, each one of which is a JSON, for
   example:
