@@ -27,9 +27,7 @@ int main(int, char**) {
   try {
     ipfs::Client client("localhost", 5001);
 
-    std::string object_id;
-
-    client.ObjectNew(&object_id);
+    std::string object_id = "QmabZ1pL9npKXJg8JGdMwQMJo2NCVy9yDVYjhiHK4LTJQH";
 
     /** [ipfs::Client::PinAdd] */
     /* std::string object_id = "QmdfTbBqBPQ7VNxZEYEj14V...1zR1n" for example. */
