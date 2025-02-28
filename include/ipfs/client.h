@@ -548,7 +548,7 @@ class Client {
    * @since version 0.1.1 */
   void DagExport(
       /** [in] Root node ID */
-      std:;string& cid,
+      std::string& cid,
       /** [out] Resultant CAR */
       std::string* output);
 
