@@ -28,14 +28,14 @@ int main(int, char**) {
     ipfs::http::TransportCurl transportCurl(false);
     {
       std::stringstream response;
-      transportCurl.Fetch("https://example.com/", {}, &response);
+      transportCurl.Fetch("https://httpbin.org/post", {}, &response);
       assert(!response.str().empty());
     }
     /* test move constructor */
     {
       ipfs::http::TransportCurl transportCurl2(std::move(transportCurl));
       std::stringstream response;
-      transportCurl2.Fetch("https://example.com/", {}, &response);
+      transportCurl2.Fetch("https://httpbin.org/post", {}, &response);
       assert(!response.str().empty());
     }
   }
@@ -45,7 +45,7 @@ int main(int, char**) {
     ipfs::http::TransportCurl transportCurl2(false);
     transportCurl2 = std::move(transportCurl);
     std::stringstream response;
-    transportCurl2.Fetch("https://example.com/", {}, &response);
+    transportCurl2.Fetch("https://httpbin.org/post", {}, &response);
     assert(!response.str().empty());
   }
 }
