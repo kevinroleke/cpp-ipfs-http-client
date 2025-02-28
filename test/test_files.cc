@@ -39,7 +39,7 @@ int main(int, char**) {
     /* An example output:
     Retrieved contents: Hello an...
     */
-   
+
     /** [ipfs::Client::FilesGet] */
     ipfs::test::check_if_string_contains("client.FilesGet()", contents.str(),
                                          "Hello and Welcome to IPFS!");
@@ -68,45 +68,6 @@ int main(int, char**) {
     ]
     */
     /** [ipfs::Client::FilesAdd] */
-
-    /** [ipfs::Client::FilesLs] */
-    ipfs::Json ls_result;
-    client.FilesLs("/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG",
-                   &ls_result);
-    std::cout << "FilesLs() result:" << std::endl
-              << ls_result.dump(2) << std::endl;
-    /* An example output:
-    {
-      "Arguments": {
-        "/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG":
-        "QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG"
-      },
-      "Objects": {
-        "QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG": {
-          "Hash": "QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG",
-          "Links": [
-            {
-              "Hash": "QmZTR5bcpQD7cFgTorqxZDYaew1Wqgfbd2ud9QqGPAkK2V",
-              "Name": "about",
-              "Size": 1677,
-              "Type": "File"
-            },
-            ...
-            {
-              "Hash": "QmdncfsVm2h5Kqq9hPmU7oAVX2zTSVP3L869tgTbPYnsha",
-              "Name": "quick-start",
-              "Size": 1717,
-              "Type": "File"
-            },
-            ...
-          ],
-          "Size": 0,
-          "Type": "Directory"
-        }
-      }
-    }
-    */
-    /** [ipfs::Client::FilesLs] */
   } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
     return 1;
