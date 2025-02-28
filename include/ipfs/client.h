@@ -583,8 +583,8 @@ class Client {
    *
    * @since version 0.1.1 */
   void DagPut(
-      /** [in] Object data */
-      const http::FileUpload& data,
+      /** [in] DAG-JSON object */
+      Json* input,
       /** [in] Pin this object when adding? */
       bool pin,
       /** [out] Resultant CID */
@@ -602,10 +602,10 @@ class Client {
    *
    * @since version 0.1.1 */
   void DagGet(
-      /** [in] IPFS CID */
-      const std::string& cid,
-      /** [out] DAG node data as a std::string */
-      std::iostream* data);
+      /** [in] IPFS path */
+      const std::string& path,
+      /** [out] DAG-JSON object */
+      Json* data);
 
   /** Get the CID and remaining path of the node at the end of a given IPFS path
    *

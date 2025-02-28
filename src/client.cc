@@ -322,6 +322,30 @@ void Client::NameResolve(const std::string& name_id, std::string* path_string) {
   GetProperty(response, "Path", 0, path_string);
 }
 
+void Client::DagExport(std::string& cid, std::iostream* output) {
+  http_->Fetch(MakeUrl("dag/export", {{"arg", cid}, {"progress", "false"}}), {}, output);
+}
+
+void Client::DagImport(const http::FileUpload& data, bool pin, std::string* cid) {
+  Json response;
+  FetchAndParseJson(MakeUrl("dag/import", {{"pin-roots", std::to_string(pin)}}), {data}, &response);
+  response.at("Root").at("Cid").at("/").get_to(*cid);
+}
+
+void Client::DagPut(Json* input, bool pin, std::string* cid) {
+  Json response;
+  FetchAndParseJson(MakeUrl("dag/put", {{"pin", std::to_string(pin)}}), {{"file", http::FileUpload::Type::kFileContents, input->dump()}}, &response);
+  response.at("Cid").at("/").get_to(*cid);
+}
+
+void Client::DagGet(const std::string& path, Json* data) {
+  FetchAndParseJson(MakeUrl("dag/get", {{"arg", path}}), data);
+}
+
+void Client::DagResolve(const std::string& path, Json* json) {
+  FetchAndParseJson(MakeUrl("dag/resolve", {{"arg", path}}), json);
+}
+
 void Client::DagStat(const std::string& root_id, Json* json) {
   FetchAndParseJson(MakeUrl("dag/stat", {{"arg", root_id}, {"progress", "false"}}), json);
 }
