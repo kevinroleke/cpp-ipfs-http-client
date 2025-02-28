@@ -550,7 +550,7 @@ class Client {
       /** [in] Root node ID */
       std::string& cid,
       /** [out] Resultant CAR */
-      std::string* output);
+      std::iostream* output);
 
   /** Add a CAR to the node repo
    *
@@ -605,7 +605,7 @@ class Client {
       /** [in] IPFS CID */
       const std::string& cid,
       /** [out] DAG node data as a std::string */
-      std::string* data);
+      std::iostream* data);
 
   /** Get the CID and remaining path of the node at the end of a given IPFS path
    *
