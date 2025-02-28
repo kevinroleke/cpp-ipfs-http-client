@@ -535,7 +535,102 @@ class Client {
       /** [in] Unpin options. */
       PinRmOptions options);
 
-  /** Get IPFS bandwidth (bw) information.
+  /** Export node as CAR
+   *
+   * Implements
+   * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/DAG.md#ipfsdagexportcid-options
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagExport
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagExport(
+      /** [in] Root node ID */
+      std:;string& cid,
+      /** [out] Resultant CAR */
+      std::string* output);
+
+  /** Add a CAR to the node repo
+   *
+   * Implements
+   * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/DAG.md#ipfsdagimportsource-options
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagImport
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagImport(
+      /** [in] CAR data */
+      const http::FileUpload& data,
+      /** [in] Pin header roots when adding? */
+      bool pin,
+      /** [out] Resultant CID */
+      std::string* cid);
+
+  /** Add a node to the DAG
+   *
+   * Implements
+   * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/DAG.md#ipfsdagputdagnode-options
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagPut
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagPut(
+      /** [in] Object data */
+      const http::FileUpload& data,
+      /** [in] Pin this object when adding? */
+      bool pin,
+      /** [out] Resultant CID */
+      std::string* cid);
+
+  /** Get the data field of a MerkleDAG node.
+   *
+   * Implements
+   * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/DAG.md#ipfsdaggetcid-options
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagGet
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagGet(
+      /** [in] IPFS CID */
+      const std::string& cid,
+      /** [out] DAG node data as a std::string */
+      std::string* data);
+
+  /** Get the CID and remaining path of the node at the end of a given IPFS path
+   *
+   * Implements
+   * https://github.com/ipfs/js-ipfs/blob/master/docs/core-api/DAG.md#ipfsdagresolveipfspath-options
+   *
+   * An example usage:
+   * @snippet test_dag.cc ipfs::Client::DagResolve
+   *
+   * @throw std::exception if any error occurs
+   *
+   * @since version 0.1.1 */
+  void DagResolve(
+      /** [in] IPFS path */
+      const std::string& path,
+      /** [out]
+       * {
+       * "Cid": {
+       *    "/": "QmULFXXZMtQ2wCXDU6L8d9R4bYiQi7GpENhhZFF7ctPJDT"
+       *  },
+       *  "RemPath": ""
+       * } */
+      Json* json);
+
+  /** Get total size from IPFS DAG node including all children.
    *
    * Implements
    * https://docs.ipfs.tech/reference/kubo/rpc/#api-v0-dag-stat
