@@ -11,12 +11,12 @@ set(TESTS
   test_generic
   test_key
   test_name
-  test_object
   test_pin
   test_stats
   test_swarm
   test_threading
   test_transport_curl
+  test_dag
 )
 
 string(TOLOWER "${CMAKE_BUILD_TYPE}" CMAKE_BUILD_TYPE_LOWER)
